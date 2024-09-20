@@ -14,8 +14,17 @@ def main():
   
   print("***************************")
   print("  Welcome to Python Slots  ")
-  print(" Symbols: 🍒 🍉 🍋 🔔 ⭐ ")
+  print("  Symbols: 🍒 🍉 🍋 🔔 ⭐ ")
   print("***************************")
+  
+  while balance > 0:
+    print(f"Current balance: ${balance}")
+    
+    bet = input("Place your bet amount: ")
+    
+    if not bet.isdigit():
+      print("Please enter the valid number")
+      continue
 
 if __name__ == "__main__":
   main()
