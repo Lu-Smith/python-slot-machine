@@ -4,8 +4,8 @@ import random
 
 def spin_row():
   symbols = ["🍒", "🍉", "🍋", "🔔", "⭐"]
-  
-  return [random.choice(symbols) for _ in range(3)]
+  weights = [200, 300, 500, 400, 100]
+  return [random.choices(symbols, weights=weights, k=1)[0] for _ in range(3)]
 
   
 def print_row(row):
@@ -14,18 +14,17 @@ def print_row(row):
   print("*************")
 
 def get_payout(row, bet):
-  if row[0] == row[1] == row[2]:
-    if row[0] == "🍒":
-      return bet * 3
-    elif row[0] == "🍉":
-      return bet * 4
-    elif row[0] == "🍋":
-      return bet * 5
-    elif row[0] == "🔔":
-      return bet * 10
-    elif row[0] == "⭐":
-      return bet * 20
-  return 0
+    if all(symbol == "🍒" for symbol in row):
+        return 5 * bet
+    elif all(symbol == "🍉" for symbol in row):
+        return 10 * bet
+    elif all(symbol == "🍋" for symbol in row):
+        return 20 * bet
+    elif all(symbol == "🔔" for symbol in row):
+        return 40 * bet
+    elif all(symbol == "⭐" for symbol in row):
+        return 100 * bet
+    return 0
 
 def main():
   balance = 100
