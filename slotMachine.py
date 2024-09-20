@@ -72,9 +72,12 @@ def main():
     play_again = input("Do you want to spin again (Y/N): ").upper()
     
     if play_again != "Y":
-      print("Goodbye!")
       break
-      
 
+  print("*********************************************")
+  print(f"Game over! Your final balance id ${balance}.")
+  print("Goodbye!")
+  print("*********************************************")
+  
 if __name__ == "__main__":
   main()
