@@ -1,14 +1,13 @@
-# Python Slot Machine
-
 import random
 
 def spin_row():
+
   symbols = ["🍒", "🍉", "🍋", "🔔", "⭐"]
   weights = [200, 300, 500, 400, 100]
   return [random.choices(symbols, weights=weights, k=1)[0] for _ in range(3)]
 
-  
 def print_row(row):
+
   print("*************")
   print(" | ".join(row))
   print("*************")
@@ -27,6 +26,7 @@ def get_payout(row):
     return 0
 
 def main():
+  
   balance = 100
   
   print("***************************")
@@ -83,4 +83,4 @@ def main():
   print("*********************************************")
   
 if __name__ == "__main__":
-  main()
+    main()
