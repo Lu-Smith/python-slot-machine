@@ -8,8 +8,10 @@ def spin_row():
   return [random.choice(symbols) for _ in range(3)]
 
   
-def print_row():
-  pass
+def print_row(row):
+  print("*************")
+  print(" | ".join(row))
+  print("*************")
 
 def get_payout():
   pass
@@ -44,7 +46,8 @@ def main():
     balance -= bet
     
     row = spin_row()
-    print(row)
+    print("Spinning ...\n")
+    print_row(row)
       
 
 if __name__ == "__main__":
