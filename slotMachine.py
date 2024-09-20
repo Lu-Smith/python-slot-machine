@@ -13,17 +13,17 @@ def print_row(row):
   print(" | ".join(row))
   print("*************")
 
-def get_payout(row, bet):
+def get_payout(row):
     if all(symbol == "🍒" for symbol in row):
-        return 5 * bet
+        return 5
     elif all(symbol == "🍉" for symbol in row):
-        return 10 * bet
+        return 10
     elif all(symbol == "🍋" for symbol in row):
-        return 20 * bet
+        return 20
     elif all(symbol == "🔔" for symbol in row):
-        return 40 * bet
+        return 40
     elif all(symbol == "⭐" for symbol in row):
-        return 100 * bet
+        return 100
     return 0
 
 def main():
@@ -37,10 +37,15 @@ def main():
   while balance > 0:
     print(f"Current balance: ${balance}")
     
-    bet = input("Place your bet amount: ")
+    bet = input("Place your bet amount (or 'q' to quit): ")
+    
+    if bet.lower() == 'q':
+      print(f"Thanks for playing! You're leaving with ${balance}")
+      break
+
     
     if not bet.isdigit():
-      print("Please enter the valid number.")
+      print("Please enter a valid number.")
       continue
     
     bet = int(bet)
@@ -59,19 +64,18 @@ def main():
     print("Spinning ...\n")
     print_row(row)
     
-    payout = get_payout(row, bet)
+    payout_multiplier = get_payout(row)
     
-    if payout > 0:
-      print(f"You won ${payout}")
+    if payout_multiplier > 0:
+      winnings = bet * payout_multiplier
+      balance += winnings
+      print(f"Congratulations! You won ${winnings}!")
     else:
-      print("Sorry you lost this round 🥺!")
-      
-    balance += payout
-    
-    play_again = input("Do you want to spin again (Y/N): ").upper()
-    
-    if play_again != "Y":
-      break
+      print("Sorry, no win this time.")
+
+    if balance <= 0:
+        print("Game over. You've run out of money.")
+  
 
   print("*********************************************")
   print(f"Game over! Your final balance id ${balance}.")
